@@ -1,3 +1,7 @@
+import { Node } from "./node.js";
+
+export const Tree = (arr) => {
+
     const buildTree = (arr) => {
         if(arr.length <= 0) return null;
         const mid = Math.floor((arr.length - 1) / 2);
@@ -20,3 +24,7 @@
         }
       };
 
+      const root = buildTree(arr);
+     
+    return { arr, root, prettyPrint }
+}
