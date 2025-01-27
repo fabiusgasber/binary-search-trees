@@ -32,8 +32,16 @@ export const Tree = (arr) => {
         return sortedUnique;
       }
 
+      const insert = (value, rootNode = root) => {
+        if(!rootNode) return Node(value);
+        if(rootNode.data === value) return rootNode;
+        let current = rootNode;
+        value <= current.data ? rootNode.left = insert(value, current.left) : rootNode.right = insert(value, current.right);
+        return rootNode;
+      }
+
       const processedArr = processArr(arr);
       const root = buildTree(processedArr);
      
-    return { arr, root, prettyPrint }
+    return { arr, root, prettyPrint, insert}
 }
