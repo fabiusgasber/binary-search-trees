@@ -25,6 +25,9 @@ export const ArrayProcessor = () => {
         return mergedArr;
     }
 
+    const removeDuplicates = (arr) => {
+        return [...new Set(arr)];
+    }
 
     return { mergeSort, removeDuplicates }
 }
