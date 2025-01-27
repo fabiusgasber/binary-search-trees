@@ -40,8 +40,41 @@ export const Tree = (arr) => {
         return rootNode;
       }
 
+      const deleteItem = (value, current = root) => {
+         if(!current) return;
+         if(current.data === value) {
+           if(!current.left && !current.right) return null;
+           if(current.left && !current.right) return current.left;
+           if(current.right && !current.left) return current.right;
+           if(current.right && current.left){
+              const old = current;
+              current = current.right;
+              if(!current.left) {
+                current.left = old.left;
+                return current;
+              }
+              while(current.left) {
+                const prev = current;
+                if(prev.left.left === null) {
+                  current = current.left;
+                  prev.left = null;
+                }
+                else {
+                  current = current.left;
+                }
+              }
+              current.left = old.left;
+              current.right = old.right;
+              if(value === root.data) root.data = current.data;
+              return current;
+           }
+         };
+         value < current.data ? current.left = deleteItem(value, current.left) : current.right = deleteItem(value, current.right);
+         return current;
+      }
+
       const processedArr = processArr(arr);
       const root = buildTree(processedArr);
      
-    return { arr, root, prettyPrint, insert}
+    return { arr, root, prettyPrint, insert, deleteItem}
 }
