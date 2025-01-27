@@ -1,3 +1,4 @@
+import { ArrayProcessor } from "./array-processor.js";
 import { Node } from "./node.js";
 
 export const Tree = (arr) => {
@@ -24,7 +25,15 @@ export const Tree = (arr) => {
         }
       };
 
-      const root = buildTree(arr);
+      const processArr = (arr) => {
+        const processor = ArrayProcessor();
+        const unique = processor.removeDuplicates(arr);
+        const sortedUnique = processor.mergeSort(unique);
+        return sortedUnique;
+      }
+
+      const processedArr = processArr(arr);
+      const root = buildTree(processedArr);
      
     return { arr, root, prettyPrint }
 }
