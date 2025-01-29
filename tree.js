@@ -73,6 +73,14 @@ export const Tree = (arr) => {
          return current;
       }
 
+      const find = (value, current = root) => {
+        while(current && current.data) {
+          if(current.data === value) return current;
+          value < current.data ? current = current.left : current = current.right;
+        }
+        return null;
+      }
+
       const processedArr = processArr(arr);
       const root = buildTree(processedArr);
      
