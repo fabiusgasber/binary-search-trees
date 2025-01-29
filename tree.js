@@ -113,6 +113,14 @@ export const Tree = (arr) => {
         levelOrderRec(callback, queue);
       }
 
+      const preOrder = (callback, current = root) => {
+        if(!callback) throw new Error("Callback is required");
+        if(!current) return;
+        callback(current);
+        preOrder(callback, current.left);
+        preOrder(callback, current.right);
+      }
+
       const processedArr = processArr(arr);
       const root = buildTree(processedArr);
      
@@ -125,6 +133,7 @@ export const Tree = (arr) => {
       find, 
       findRec, 
       levelOrder, 
-      levelOrderRec 
+      levelOrderRec, 
+      preOrder,
     }
 }
