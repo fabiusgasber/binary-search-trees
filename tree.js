@@ -87,8 +87,21 @@ export const Tree = (arr) => {
         return value < current.data ? findRec(value, current.left) : findRec(value, current.right);
       }
 
+      const levelOrder = (callback) => {
+        if(!callback) throw new Error("Callback is required");
+        if(!root) throw new Error("Specify a valid tree");
+        const queue = [root];
+        let current = null;
+        while(queue.length > 0){
+          current = queue.shift();
+          callback(current);
+          if(current.left) queue.push(current.left);
+          if(current.right) queue.push(current.right);
+        }
+      }
+
       const processedArr = processArr(arr);
       const root = buildTree(processedArr);
      
-    return { arr, root, prettyPrint, insert, deleteItem, find, findRec }
+    return { arr, root, prettyPrint, insert, deleteItem, find, findRec, levelOrder }
 }
