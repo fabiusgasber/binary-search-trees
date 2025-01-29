@@ -81,8 +81,14 @@ export const Tree = (arr) => {
         return null;
       }
 
+      const findRec = (value, current = root) => {
+        if(!current) return null;
+        if(current.data === value) return current;
+        return value < current.data ? findRec(value, current.left) : findRec(value, current.right);
+      }
+
       const processedArr = processArr(arr);
       const root = buildTree(processedArr);
      
-    return { arr, root, prettyPrint, insert, deleteItem}
+    return { arr, root, prettyPrint, insert, deleteItem, find, findRec }
 }
