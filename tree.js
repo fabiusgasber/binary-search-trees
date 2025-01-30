@@ -152,6 +152,11 @@ export const Tree = (arr) => {
         return counter;
       }
 
+      const depth = (node) => {
+        const rootHeight = height(root);
+        const nodeHeight = height(node);
+        return rootHeight - nodeHeight;
+      }
 
       const processedArr = processArr(arr);
       const root = buildTree(processedArr);
@@ -170,5 +175,6 @@ export const Tree = (arr) => {
       inOrder,
       postOrder,
       height,
+      depth,
     }
 }
