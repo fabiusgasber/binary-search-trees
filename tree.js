@@ -137,6 +137,22 @@ export const Tree = (arr) => {
         callback(current);
       }
 
+      const height = (node) => {
+        let counter = 0;
+        while(node.left || node.right){
+          if(node.left) {
+            counter += 1;
+            node = node.left;
+          }
+          else if(node.right){
+            counter += 1;
+            node = node.right;
+          }
+        }
+        return counter;
+      }
+
+
       const processedArr = processArr(arr);
       const root = buildTree(processedArr);
      
@@ -153,5 +169,6 @@ export const Tree = (arr) => {
       preOrder,
       inOrder,
       postOrder,
+      height,
     }
 }
