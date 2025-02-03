@@ -144,10 +144,9 @@ export const Tree = (arr) => {
         return leftSubtree > rightSubtree ? leftSubtree : rightSubtree;    
       }
 
-      const depth = (node) => {
-        const rootHeight = height(root);
-        const nodeHeight = height(node);
-        return rootHeight - nodeHeight;
+      const depth = (node, current = root) => {
+        if(!node || node === current) return 0;
+        return node.data > current.data ? 1 + depth(node, current.right) : 1 + depth(node, current.left);
       }
 
       const processedArr = processArr(arr);
