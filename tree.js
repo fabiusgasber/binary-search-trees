@@ -138,18 +138,10 @@ export const Tree = (arr) => {
       }
 
       const height = (node) => {
-        let counter = 0;
-        while(node.left || node.right){
-          if(node.left) {
-            counter += 1;
-            node = node.left;
-          }
-          else if(node.right){
-            counter += 1;
-            node = node.right;
-          }
-        }
-        return counter;
+        if(node === null) return -1;
+        const leftSubtree = 1 + height(node.left);
+        const rightSubtree = 1 + height(node.right);
+        return leftSubtree > rightSubtree ? leftSubtree : rightSubtree;    
       }
 
       const depth = (node) => {
