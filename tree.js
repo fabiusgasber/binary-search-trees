@@ -139,9 +139,9 @@ export const Tree = (arr) => {
 
       const height = (node) => {
         if(node === null) return -1;
-        const leftSubtree = 1 + height(node.left);
-        const rightSubtree = 1 + height(node.right);
-        return leftSubtree > rightSubtree ? leftSubtree : rightSubtree;    
+        const leftSubtree = height(node.left);
+        const rightSubtree = height(node.right);
+        return 1 + Math.max(leftSubtree, rightSubtree);
       }
 
       const depth = (node, current = root) => {
@@ -152,8 +152,7 @@ export const Tree = (arr) => {
       const isBalanced = (root) => {
         if(!root) return true;
         const diff = Math.abs(height(root.left) - height(root.right));
-        if(diff >= 2) return false;
-        return isBalanced(root.left) && isBalanced(root.right);
+        return diff < 2 && isBalanced(root.left) && isBalanced(root.right);
       }
 
       const rebalance = () => {
