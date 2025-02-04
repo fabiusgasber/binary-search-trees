@@ -157,11 +157,13 @@ export const Tree = (arr) => {
       }
 
       const processedArr = processArr(arr);
-      const root = buildTree(processedArr);
+      let root = buildTree(processedArr);
      
     return { 
       arr, 
-      root, 
+      get root () {
+        return root;
+      },
       prettyPrint, 
       insert, 
       deleteItem, 
