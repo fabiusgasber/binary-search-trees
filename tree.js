@@ -149,6 +149,13 @@ export const Tree = (arr) => {
         return node.data > current.data ? 1 + depth(node, current.right) : 1 + depth(node, current.left);
       }
 
+      const isBalanced = (root) => {
+        if(!root) return true;
+        const diff = Math.abs(height(root.left) - height(root.right));
+        if(diff >= 2) return false;
+        return isBalanced(root.left) && isBalanced(root.right);
+      }
+
       const processedArr = processArr(arr);
       const root = buildTree(processedArr);
      
@@ -167,5 +174,6 @@ export const Tree = (arr) => {
       postOrder,
       height,
       depth,
+      isBalanced,
     }
 }
